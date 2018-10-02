@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Threading.Tasks;
 
-namespace REST_tutorial
+namespace WebAPIClient
 {
     class Program
     {
+        private static readonly HttpClient client = new HttpClient();
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ProcessRepositories().Wait();
+        }
+
+        private static async Task ProcessRepositories()
+        {
+
         }
     }
 }
