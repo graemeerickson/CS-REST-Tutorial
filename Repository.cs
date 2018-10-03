@@ -6,6 +6,7 @@ namespace WebAPIClient
     [DataContract(Name="repo")]
     public class Repository
     {
-        public string name;
+        [DataMember(Name="name")]
+        public string Name;
     }
 }
