@@ -13,10 +13,13 @@ namespace WebAPIClient
 
         static void Main(string[] args)
         {
-            ProcessRepositories().Wait();
+            var repositories = ProcessRepositories().Result;
+
+            foreach (var repo in repositories)
+                Console.WriteLine(repo.Name);
         }
 
-        private static async Task ProcessRepositories()
+        private static async Task<List<Repository>> ProcessRepositories()
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -27,8 +30,7 @@ namespace WebAPIClient
             var streamTask = client.GetStreamAsync("https://api.github.com/orgs/dotnet/repos");
             var repositories = serializer.ReadObject(await streamTask) as List<Repository>;
 
-            foreach (var repo in repositories)
-                Console.WriteLine(repo.Name);
+            return repositories;
         }
     }
 }
