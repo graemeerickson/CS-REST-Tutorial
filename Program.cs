@@ -28,7 +28,7 @@ namespace WebAPIClient
             var repositories = serializer.ReadObject(await streamTask) as List<Repository>;
 
             foreach (var repo in repositories)
-                Console.WriteLine(repo.name);
+                Console.WriteLine(repo.Name);
         }
     }
 }
